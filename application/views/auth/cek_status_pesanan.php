@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
   <div class="container">
-    <a style="font-size: 30px" class="page-scroll oleo-font navbar-brand" href="<?= base_url('auth/'); ?>#home">Andry Laundry</a>
+    <a style="font-size: 30px" class="page-scroll oleo-font navbar-brand" href="<?= base_url('auth/'); ?>#home"><?= APP_NAME ?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -253,10 +253,10 @@
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-lg-6 my-3">
-	    	<h3 class="oleo-font">Andry Laundry</h3>
+	    	<h3 class="oleo-font"><?= APP_NAME ?></h3>
 	    	<div class="row">
 	    		<div class="col-lg">
-					<span>&copy; Copyright <?= date('Y'); ?> All rights Reserved with Andry Laundry.</span>
+					<span>&copy; Copyright <?= date('Y'); ?> All rights Reserved with <?= APP_NAME ?>.</span>
 	    		</div>
 	    	</div>
 			</div>

@@ -37,9 +37,9 @@
 
 <div class="container border border-dark my-2 p-4 px-5 mt-4">
   <div class="row justify-content-center">
-    <div class="col-2 text-left">
+    <!-- <div class="col-2 text-left">
       <img width="100%" class="rounded" src="<?= base_url(); ?>assets/img/img_properties/laundry.jpg" alt="logo">
-    </div>
+    </div> -->
     <div class="col text-left my-auto">
       <table border="0">
         <tr>

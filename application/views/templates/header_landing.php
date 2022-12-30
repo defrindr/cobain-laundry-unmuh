@@ -50,7 +50,7 @@
 
     </style>
 
-    <title>Selamat Datang di Permata Laundry!</title>
+    <title>Selamat Datang di <?= APP_NAME ?>!</title>
   </head>
   <body>
     

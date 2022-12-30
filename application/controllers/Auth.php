@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +14,7 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = 'Selamat Datang di Andry Laundry';
+		$data['title'] = 'Selamat Datang di ' . APP_NAME;
 		$data['outlet'] = $this->mm->getAllOutlet();
 		$this->load->view('templates/header_landing', $data);
 		$this->load->view('auth/index', $data);
@@ -22,7 +23,7 @@ class Auth extends CI_Controller {
 
 	public function cekStatusPesanan()
 	{
-		$data['title'] = 'Cek Status Pesanan - Andry Laundry';
+		$data['title'] = 'Cek Status Pesanan - ' . APP_NAME;
 		if (isset($_POST['cari_kode'])) {
 			$kode_invoice = $this->input->post('kode_invoice', true);
 			$data['transaksi'] = $this->am->getTransaksiByKodeInvoice($kode_invoice);
@@ -49,7 +50,7 @@ class Auth extends CI_Controller {
 			redirect('main');
 		}
 
-		$data['title'] = 'Masuk - Andry Laundry';
+		$data['title'] = 'Masuk - ' . APP_NAME;
 		$this->form_validation->set_rules('username', 'Username', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		if ($this->form_validation->run() == FALSE) {
@@ -64,7 +65,7 @@ class Auth extends CI_Controller {
 	public function logout()
 	{
 		if ($this->session->userdata('id_user')) {
-			$this->mm->createLog('Pengguna ' . $this->session->userdata('username') . ' berhasil logout' , $this->session->userdata('id_user'));
+			$this->mm->createLog('Pengguna ' . $this->session->userdata('username') . ' berhasil logout', $this->session->userdata('id_user'));
 		}
 
 		$this->session->unset_userdata('id_user');

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends CI_Controller
+{
 	public function __construct()
 	{
 		parent::__construct();
@@ -24,14 +25,14 @@ class Main extends CI_Controller {
 		$this->mm->check_status_login();
 		$this->check_biodata();
 		$data['dataUser'] = $this->mm->getDataUser();
-		$data['title'] = 'Dashbor Andry Laundry';
-		
+		$data['title'] = 'Dashboard ' . APP_NAME;
+
 		// jika tombol cari tanggal ditekan
 		if (isset($_POST['cari_tanggal'])) {
 			$tanggal_awal = date('Y-m-d 00:00:00', strtotime($this->input->post('tanggal_awal')));
 			$tanggal_akhir = date('Y-m-d 23:59:59', strtotime($this->input->post('tanggal_akhir')));
 			// super administrator
-			if ($this->session->userdata('id_jabatan') == '1') {				
+			if ($this->session->userdata('id_jabatan') == '1') {
 				$data['transaksiLaporan'] = $this->lm->getTransaksiLaporanSortTgl($tanggal_awal, $tanggal_akhir)->result_array();
 				$data['jumlah_transaksi'] = $this->lm->getTransaksiLaporanSortTgl($tanggal_awal, $tanggal_akhir)->row_array();
 				$data['jumlah_status_transaksi_proses'] = $this->lm->getTransaksiLaporanSortStatusTransaksi($tanggal_awal, $tanggal_akhir, 'proses')->row_array();
@@ -44,7 +45,7 @@ class Main extends CI_Controller {
 				// kirim data tanggal untuk riwayat penelusuran
 				$data['tanggal_awal'] = $this->input->post('tanggal_awal');
 				$data['tanggal_akhir'] = $this->input->post('tanggal_akhir');
-			// selain super administrator
+				// selain super administrator
 			} else {
 				$data['transaksiLaporan'] = $this->lm->getTransaksiLaporanSortTglOutletAdministrator($tanggal_awal, $tanggal_akhir)->result_array();
 				$data['jumlah_transaksi'] = $this->lm->getTransaksiLaporanSortTglOutletAdministrator($tanggal_awal, $tanggal_akhir)->row_array();
@@ -58,7 +59,7 @@ class Main extends CI_Controller {
 				$data['tanggal_awal'] = $this->input->post('tanggal_awal');
 				$data['tanggal_akhir'] = $this->input->post('tanggal_akhir');
 			}
-		// jika tombol cari tanggal TIDAK ditekan
+			// jika tombol cari tanggal TIDAK ditekan
 		} else {
 			// super administrator
 			if ($this->session->userdata('id_jabatan') == '1') {
@@ -74,7 +75,7 @@ class Main extends CI_Controller {
 				$data['member_sering_mencuci'] = $this->lm->getMemberSeringMencuci($tanggal_awal, $tanggal_akhir)->result_array();
 				$data['transaksi_wajib_selesai_hari_ini'] = $this->lm->getTransaksiWajibSelesaiHariIni();
 
-			// selain super administrator
+				// selain super administrator
 			} else {
 				// buat tanggal default
 				$tanggal_awal = date('Y-m-01 00:00:00');
@@ -157,5 +158,4 @@ class Main extends CI_Controller {
 		$this->load->view('main/laporan', $data);
 		$this->load->view('templates/footer', $data);
 	}
-
 }
